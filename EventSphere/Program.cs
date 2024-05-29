@@ -1,3 +1,6 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using EventSphere.Data;
 namespace EventSphere
 {
     public class Program
@@ -5,6 +8,8 @@ namespace EventSphere
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Services.AddDbContext<EventSphereContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("EventSphereContext") ?? throw new InvalidOperationException("Connection string 'EventSphereContext' not found.")));
             
 
             // Add services to the container.
