@@ -17,15 +17,8 @@ namespace EventSphere.Controllers
             return View();
         }
 
-        public IActionResult Harun()
-        {
-            return View();
-        }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+
 
         // It gives opportunity to take an input from URL 
         public string Welcome(int ? ID ,string name = "Unknown", int numTimes = 1)
