@@ -1,6 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using EventSphere.Data;
+using EventSphere.Models;
+using MvcMovie.Models;
+
+
+
 namespace EventSphere
 {
     public class Program
@@ -16,6 +21,15 @@ namespace EventSphere
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            // Feed data with data in Models folder SeedData.cs
+            using (var scope = app.Services.CreateScope()) 
+            { 
+                var services = scope.ServiceProvider;
+                SeedData.Initialize(services);
+            
+            }
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
