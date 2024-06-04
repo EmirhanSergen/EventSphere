@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using EventSphere.Data;
 using EventSphere.Models;
-using MvcMovie.Models;
+
 
 
 
@@ -22,13 +22,7 @@ namespace EventSphere
 
             var app = builder.Build();
 
-            // Feed data with data in Models folder SeedData.cs
-            using (var scope = app.Services.CreateScope()) 
-            { 
-                var services = scope.ServiceProvider;
-                SeedData.Initialize(services);
             
-            }
 
 
             // Configure the HTTP request pipeline.
