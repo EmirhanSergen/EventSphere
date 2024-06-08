@@ -1,10 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using EventSphere.Data;
 using EventSphere.Models;
-
-
-
 
 namespace EventSphere
 {
@@ -20,7 +16,6 @@ namespace EventSphere
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            var app = builder.Build();
 
             
 
