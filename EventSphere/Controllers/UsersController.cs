@@ -6,26 +6,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EventSphere.Data;
-using MvcMovie.Models;
+using EventSphere.Models;
 
 namespace EventSphere.Controllers
 {
-    public class MoviesController : Controller
+    public class UsersController : Controller
     {
         private readonly EventSphereContext _context;
 
-        public MoviesController(EventSphereContext context)
+        public UsersController(EventSphereContext context)
         {
             _context = context;
         }
 
-        // GET: Movies
+        // GET: Users
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Movie.ToListAsync());
+            return View(await _context.User.ToListAsync());
         }
 
-        // GET: Movies/Details/5
+        // GET: Users/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace EventSphere.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var user = await _context.User
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(user);
         }
 
-        // GET: Movies/Create
+        // GET: Users/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Movies/Create
+        // POST: Users/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Username,Name,Surname,Email,isOrganizer,PhoneNumber")] User user)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(movie);
+                _context.Add(user);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View(user);
         }
 
-        // GET: Movies/Edit/5
+        // GET: Users/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace EventSphere.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie.FindAsync(id);
-            if (movie == null)
+            var user = await _context.User.FindAsync(id);
+            if (user == null)
             {
                 return NotFound();
             }
-            return View(movie);
+            return View(user);
         }
 
-        // POST: Movies/Edit/5
+        // POST: Users/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Name,Surname,Email,isOrganizer,PhoneNumber")] User user)
         {
-            if (id != movie.Id)
+            if (id != user.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace EventSphere.Controllers
             {
                 try
                 {
-                    _context.Update(movie);
+                    _context.Update(user);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!MovieExists(movie.Id))
+                    if (!UserExists(user.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace EventSphere.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(movie);
+            return View(user);
         }
 
-        // GET: Movies/Delete/5
+        // GET: Users/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,34 +124,34 @@ namespace EventSphere.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movie
+            var user = await _context.User
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (movie == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return View(movie);
+            return View(user);
         }
 
-        // POST: Movies/Delete/5
+        // POST: Users/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var movie = await _context.Movie.FindAsync(id);
-            if (movie != null)
+            var user = await _context.User.FindAsync(id);
+            if (user != null)
             {
-                _context.Movie.Remove(movie);
+                _context.User.Remove(user);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool MovieExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.Movie.Any(e => e.Id == id);
+            return _context.User.Any(e => e.Id == id);
         }
     }
 }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MvcMovie.Models;
+using EventSphere.Models;
+
 
 namespace EventSphere.Data
 {
@@ -13,7 +14,8 @@ namespace EventSphere.Data
             : base(options)
         {
         }
+        public DbSet<EventSphere.Models.User> User { get; set; } = default!;
 
-        public DbSet<MvcMovie.Models.Movie> Movie { get; set; } = default!;
+        
     }
 }
