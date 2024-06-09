@@ -29,8 +29,7 @@ body {
   }
   
   .info {
-    width:50%;
-    margin: auto;
+    
     color:#1A4D2E;
     display: flex;
     flex-direction: column;
@@ -56,10 +55,10 @@ body {
   }
   
   .button {
-    background-color: #008CBA;
+    background-color: #006769;
     border: none;
     color: #E0FBE2;
-    padding: 10px 10px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -69,6 +68,9 @@ body {
     cursor: pointer;
     display:inline;
   }
+  button:hover {
+    background-color: #027c7e;
+}
   .ul {
     list-style-type: none;
     margin: 0;
@@ -81,6 +83,8 @@ body {
     float: right;
 
   }
+  
+  
   .li a {
     display: block;
     color: #E0FBE2;
@@ -88,3 +92,114 @@ body {
     padding: 14px 16px;
     text-decoration: none;
   }
+  
+  .calendar {
+    width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .calendar-header {
+    background-color: #E0FBE2;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  .calendar-header h2 {
+    margin: 0;
+  }
+  .calendar-body {
+    padding: 20px;
+  }
+  .calendar-body table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .calendar-body th, .calendar-body td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+  .calendar-body th {
+    background-color: #E0FBE2;
+  }
+  .calendar-body td a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .calendar-body td.today a {
+    background-color: #cff;
+  }
+  .profile {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #E0FBE2;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #006769;
+}
+
+.profile-header p {
+    margin: 5px 0 0;
+    font-size: 1.2em;
+    color: #006769;
+}
+
+.profile-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    margin: 0;
+    font-size: 1em;
+    color: #81c584;
+}
+
+.friends {
+    text-align: center;
+}
+
+.friends h2 {
+    font-size: 1.5em;
+    color: #006769;
+    margin-bottom: 10px;
+}
+
+.friends ul {
+    list-style: none;
+    padding: 0;
+}
+
+.friends ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.friends ul li a {
+    text-decoration: none;
+    font-size: 1em;
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+.friends ul li a:hover {
+    color: #0056b3;
+}
+
+ 
