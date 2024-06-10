@@ -1,8 +1,37 @@
-﻿@{
+﻿@model IEnumerable<EventSphere.Models.Event>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Events</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Short Description</th>
+            <th>Long Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Location</th>
+            <th>Category Id</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var evt in Model)
+        {
+            <tr>
+                <td>@evt.Id</td>
+                <td>@evt.Name</td>
+                <td>@evt.ShortDesc</td>
+                <td>@evt.LongDesc</td>
+                <td>@evt.StartDate.ToString("yyyy-MM-dd")</td>
+                <td>@evt.EndDate.ToString("yyyy-MM-dd")</td>
+                <td>@evt.Location</td>
+                <td>@evt.CategoryId</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -14,8 +14,30 @@ namespace EventSphere.Data
             : base(options)
         {
         }
-        public DbSet<EventSphere.Models.User> User { get; set; } = default!;
+        public DbSet<User> Users { get; set; } 
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<EventCategory> EventCategories { get; set; }
 
-        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<EventCategory>()
+                .HasKey(ec => new { ec.EventId, ec.CategoryId });
+
+            modelBuilder.Entity<EventCategory>()
+                .HasOne(ec => ec.Event)
+                .WithMany(e => e.EventCategories)
+                .HasForeignKey(ec => ec.EventId);
+
+            modelBuilder.Entity<EventCategory>()
+                .HasOne(ec => ec.Category)
+                .WithMany(c => c.EventCategories)
+                .HasForeignKey(ec => ec.CategoryId);
+        }
+        public DbSet<LoginViewModel> LoginViewModel { get; set; } = default!;
+
+
     }
 }
