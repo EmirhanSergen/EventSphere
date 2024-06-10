@@ -1,6 +1,8 @@
+using EventSphere.Data;
 using EventSphere.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Text.Encodings.Web;
 
@@ -9,21 +11,26 @@ namespace EventSphere.Controllers
     public class HomeController : Controller
     {
 
-        // IActionResult gives opportunity to return a controller action, such as views, JSON, redirects, etc.
-        public IActionResult Index()
-        {
+        private readonly EventSphereContext _context;
 
-            // It goes to Views folder and execute file which name is same as route
-            return View();
+        public HomeController(EventSphereContext context)
+        {
+            _context = context;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var events = await _context.Events.ToListAsync();
+            return View(events);
         }
 
 
 
-        
+
         // It gives opportunity to take an input from URL 
-        public string Welcome(int ? ID ,string name = "Unknown", int numTimes = 1)
+        /*public string Welcome(int ? ID ,string name = "Unknown", int numTimes = 1)
         {
             return $"Hello {name}, NumTimes is: {numTimes}\nSite's ID is {ID}";
-        }
+        }*/
     }
 }
